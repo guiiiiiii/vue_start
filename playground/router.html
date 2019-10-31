@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <!-- 라우터가 사용하는 a태그라고 볼 수 있음 -->
+            <router-link to='/login'>Login</router-link>
+            <router-link to='/main'>Main</router-link>
+        </div>
+        <!-- 라우터가 뿌리는(?) view 컴포넌트를 보여줌 -->
+        <router-view></router-view>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+    var LoginComponent={
+        template:'<div>login</div>'
+    }
+    var MainComponent={
+        template:'<div>main</div>'
+    }
+
+    var router=new VueRouter({
+        //mode:'history' -> url에 붙는 해시 # 를 없애고 사용하겠다는 의미
+        mode:'history',
+        //페이지의 라우팅 정보
+        routes:[
+            {
+                //페이지의 url
+                path:'/login',
+                // name:'login',
+                //해당 url에서 표시될 컴포넌트
+                component: LoginComponent
+            },
+            {
+                path:'/main',
+                component: MainComponent
+            }
+        ]
+
+    });
+
+    new Vue({
+        el:'#app',
+        router:router
+    });
+    </script>
+
+</body>
+</html>
